@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- First Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link href="css/sidebars.css" rel="stylesheet" />
+    <link href="css/jquery.rateyo.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <style></style>
+  </head>
+
+  <body class="d-none d-sm-block d-sm-none d-md-block">
+    <div class="body-container"></div>
+    <div class="sidebar not-loa">
+      <div
+        class="d-flex flex-column flex-shrink-0 bg-light"
+        style="width: 4.5rem"
+      >
+        <a
+          href=""
+          class="d-block p-3 link-dark search-button text-decoration-none"
+          title="Search"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+        >
+          <i class="fas fa-search fa-3x"></i>
+          <span class="visually-hidden">Search</span>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item">
+            <a
+              href="index.html"
+              class="nav-link py-3 border-bottom"
+              aria-current="Home"
+              title="Home"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+            >
+              <i class="fas fa-home fa-2x"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-link py-3 border-bottom"
+              title="Movies"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+            >
+              <i class="fas fa-video fa-2x"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-link py-3 border-bottom"
+              title="Series"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+            >
+              <i class="fas fa-tv fa-2x"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-link py-3 border-bottom"
+              title="Live"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+            >
+              <i class="fas fa-rss fa-2x"></i>
+            </a>
+          </li>
+        </ul>
+        <div class="dropdown border-top">
+          <a
+            href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser3"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt="mdo"
+              width="24"
+              height="24"
+              class="rounded-circle"
+            />
+          </a>
+          <ul
+            class="dropdown-menu text-small shadow"
+            aria-labelledby="dropdownUser3"
+          >
+            <li>
+              <a class="dropdown-item" href="#">New project...</a>
+            </li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-wrap not-loa">
+      <div class="plyr__video-embed" id="player">
+        <!-- <iframe
+          class="background-trailer"
+          src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+          allowfullscreen
+        ></iframe> -->
+      </div>
+      <div class="page-wrap-overlay px-4">
+        <div class="container-fluid">
+          <div class="single-info mt-5">
+            <div class="single-info-top">
+              <!-- <h2 class="single-head">Captain America: Civil War</h2>
+                <div class="d-flex">
+                  <div
+                    id="rateYo"
+                    class="d-flex flex-column justify-content-center"
+                  ></div>
+                  <span class="movie-date text-white fs-4">2020</span>
+                </div>
+                <p class="text-white fs-3 mt-4">
+                  Statting: <span class="cast">Chris Eveans</span> /
+                  <span class="cast"> Robert Downey Jr.</span>
+                </p>
+                <p class="mt-4 text-white fs-3 w-50 fw-bolder">
+                  Introduction:
+                  <span class="introduction fw-normal"
+                    >Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptate, error magnam. Neque aut distinctio debitis qui rem
+                    quidem, dolores possimus eveniet cum ratione voluptatem voluptas
+                    reiciendis obcaecati dolore laboriosam est?</span
+                  >
+                </p> -->
+            </div>
+            <div class="single-buttons d-flex">
+              <p class="me-3 mb-0" uk-margin>
+                <a
+                  class="uk-button trailer text-white fw-bold rounded"
+                  href="#modal-media-youtube"
+                  uk-toggle
+                  >Play</a
+                >
+              </p>
+              <a class="imdb-link me-3" target="_blank" href="#"
+                ><img class="imdb" src="images/imdb.svg" alt="imdb"
+              /></a>
+              <!-- <a
+                class="uk-button gallery bg-white main-color fw-bolder rounded"
+                href="#modal-full"
+                uk-toggle
+                >Gallery</a
+              > -->
+
+              <div id="modal-full" class="uk-modal-full" uk-modal>
+                <div class="uk-modal-dialog movie-gallery">
+                  <button
+                    class="uk-modal-close-full uk-close-large"
+                    type="button"
+                    uk-close
+                  ></button>
+                  <div
+                    class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle"
+                    uk-grid
+                  >
+                    <div
+                      class="uk-position-relative uk-visible-toggle uk-light"
+                      tabindex="-1"
+                      uk-slider="center: true"
+                    >
+                      <ul
+                        class="uk-slider-items uk-grid uk-grid-match"
+                        uk-height-viewport="offset-top: true; offset-bottom: 30"
+                      >
+                        <li class="uk-width-3-4">
+                          <div class="uk-cover-container">
+                            <img class="img-slider" src="img/s4.jpg" alt="" uk-cover />
+                          </div>
+                        </li>
+                        <li class="uk-width-3-4">
+                          <div class="uk-cover-container">
+                            <img class="img-slider" src="img/s1.jpg" alt="" uk-cover />
+                          </div>
+                        </li>
+                        <li class="uk-width-3-4">
+                          <div class="uk-cover-container">
+                            <img class="img-slider" src="img/s2.jpg" alt="" uk-cover />
+                          </div>
+                        </li>
+                        <li class="uk-width-3-4">
+                          <div class="uk-cover-container">
+                            <img class="img-slider" src="img/s3.jpg" alt="" uk-cover />
+                          </div>
+                        </li>
+                      </ul>
+
+                      <a
+                        class="uk-position-center-left uk-position-small uk-hidden-hover"
+                        href="#"
+                        uk-slidenav-previous
+                        uk-slider-item="previous"
+                      ></a>
+                      <a
+                        class="uk-position-center-right uk-position-small uk-hidden-hover"
+                        href="#"
+                        uk-slidenav-next
+                        uk-slider-item="next"
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="modal-media-youtube"
+                class="uk-flex-top trailer-container"
+                uk-modal
+              >
+                <div
+                  class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical h-100"
+                >
+                  <button
+                    class="uk-modal-close-outside"
+                    type="button"
+                    uk-close
+                  ></button>
+                  <iframe
+                    class="trailer-id h-100"
+                    src="https://www.youtube-nocookie.com/embed/c2pz2mlSfXA"
+                    width="1920"
+                    height="1080"
+                    frameborder="0"
+                    uk-video
+                    uk-responsive
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="related mt-5">
+              <div
+                class="uk-position-relative uk-visible-toggle uk-light"
+                tabindex="-1"
+                uk-slider
+              >
+                <ul
+                  class="uk-slider-items related-list uk-child-width-1-2 uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-6@xl uk-grid"
+                >
+                </ul>
+
+                <a
+                  class="uk-position-center-left uk-position-small uk-hidden-hover"
+                  href="#"
+                  uk-slidenav-previous
+                  uk-slider-item="previous"
+                ></a>
+                <a
+                  class="uk-position-center-right uk-position-small uk-hidden-hover"
+                  href="#"
+                  uk-slidenav-next
+                  uk-slider-item="next"
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="scaling-squares-spinner" :style="spinnerStyle">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div> -->
+
+    <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/jQuery3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sidebars.js"></script>
+    <script src="js/jquery.rateyo.min.js"></script>
+    <script src="js/plugin.js"></script>
+  </body>
+</html>
