@@ -1,206 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- First Mobile Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Smart</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css"
-    />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/all.css" />
-    <link href="css/sidebars.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <style></style>
-  </head>
 
-  <body class="d-none d-sm-block d-sm-none d-md-block">
-    <div class="body-container"></div>
-    <div class="sidebar not-load">
-      <div
-        class="d-flex flex-column flex-shrink-0 bg-light"
-        style="width: 4.5rem"
-      >
-        <a
-          href=""
-          class="d-block p-3 link-dark search-button text-decoration-none"
-          title="Search"
-          data-bs-toggle="tooltip"
-          data-bs-placement="right"
-        >
-          <i class="fas fa-search fa-3x"></i>
-          <span class="visually-hidden">Search</span>
-        </a>
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <li class="nav-item">
-            <a
-              href="index.html"
-              class="nav-link py-3 border-bottom"
-              aria-current="Home"
-              title="Home"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <i class="fas fa-home fa-2x"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="nav-link py-3 border-bottom"
-              title="Movies"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <i class="fas fa-video fa-2x"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="nav-link py-3 border-bottom"
-              title="Series"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <i class="fas fa-tv fa-2x"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="nav-link py-3 border-bottom"
-              title="Live"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <i class="fas fa-rss fa-2x"></i>
-            </a>
-          </li>
-        </ul>
-        <div class="dropdown border-top">
-          <a
-            href="#"
-            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-            id="dropdownUser3"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt="mdo"
-              width="24"
-              height="24"
-              class="rounded-circle"
-            />
+<head>
+  <meta charset="UTF-8" />
+  <!-- First Mobile Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.css" />
+  <link href="css/sidebars.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style></style>
+</head>
+
+<body class="d-none d-sm-block d-sm-none d-md-block bg-dark">
+  <div class="body-container"></div>
+  <div class="sidebar not-load">
+    <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem">
+      <a href="" class="d-block p-3 link-dark search-button text-decoration-none" title="Search"
+        data-bs-toggle="tooltip" data-bs-placement="right">
+        <i class="fas fa-search fa-3x"></i>
+        <span class="visually-hidden">Search</span>
+      </a>
+      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link py-3 border-bottom" aria-current="Home" title="Home"
+            data-bs-toggle="tooltip" data-bs-placement="right">
+            <i class="fas fa-home fa-2x"></i>
           </a>
-          <ul
-            class="dropdown-menu text-small shadow"
-            aria-labelledby="dropdownUser3"
-          >
-            <li>
-              <a class="dropdown-item" href="#">New project...</a>
-            </li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Movies" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <i class="fas fa-video fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Series" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <i class="fas fa-tv fa-2x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link py-3 border-bottom" title="Live" data-bs-toggle="tooltip"
+            data-bs-placement="right">
+            <i class="fas fa-rss fa-2x"></i>
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown border-top">
+        <a href="#"
+          class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+          id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle" />
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+          <li>
+            <a class="dropdown-item" href="#">New project...</a>
+          </li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="page-wrap not-load">
-      <!-- Start Trending -->
-      <div class="container">
-        <h2 class="section-head text-white">Trending</h2>
-        <div
-          class="uk-position-relative uk-visible-toggle uk-light"
-          tabindex="-1"
-          uk-slider
-        >
-          <ul
-            class="uk-slider-items trending uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-grid"
-          >
-            <!-- <li>
+  <div class="page-wrap not-load">
+    <!-- Start Trending -->
+    <div class="container">
+      <h2 class="section-head text-white">Trending</h2>
+      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+        <ul class="uk-slider-items trending uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-grid">
+          <!-- <li>
                           <div class="uk-panel">
                               <img class="slider-img" src="img/s0.jpg" alt="">
                           </div>
                       </li> -->
-          </ul>
+        </ul>
 
-          <a
-            class="uk-position-center-left uk-position-small uk-hidden-hover"
-            href="#"
-            uk-slidenav-previous
-            uk-slider-item="previous"
-          ></a>
-          <a
-            class="uk-position-center-right uk-position-small uk-hidden-hover"
-            href="#"
-            uk-slidenav-next
-            uk-slider-item="next"
-          ></a>
-        </div>
-      </div>
-      <!-- End Trending -->
-
-      <!-- Start Casting -->
-      <div class="container mt-5">
-        <h2 class="section-head text-white">Casting</h2>
-        <div
-          class="uk-position-relative uk-visible-toggle uk-light"
-          tabindex="-1"
-          uk-slider
-        >
-          <ul
-            class="uk-slider-items casting uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-grid"
-          ></ul>
-
-          <a
-            class="uk-position-center-left uk-position-small uk-hidden-hover"
-            href="#"
-            uk-slidenav-previous
-            uk-slider-item="previous"
-          ></a>
-          <a
-            class="uk-position-center-right uk-position-small uk-hidden-hover"
-            href="#"
-            uk-slidenav-next
-            uk-slider-item="next"
-          ></a>
-        </div>
-        <div class="movies-list mt-5"></div>
-      </div>
-      <!-- End Casting -->
-    </div>
-
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-      <div class="scaling-squares-spinner m-0" :style="spinnerStyle">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+          uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+          uk-slider-item="next"></a>
       </div>
     </div>
+    <!-- End Trending -->
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/jQuery3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebars.js"></script>
-    <script src="js/plugin.js"></script>
-  </body>
+    <!-- Start Casting -->
+    <div class="container mt-5">
+      <h2 class="section-head text-white">Casting</h2>
+      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+        <ul class="uk-slider-items casting uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-grid"></ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+          uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+          uk-slider-item="next"></a>
+      </div>
+      <div class="movies-list mt-5"></div>
+    </div>
+    <!-- End Casting -->
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="scaling-squares-spinner m-0" :style="spinnerStyle">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/jQuery3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/sidebars.js"></script>
+  <script src="js/plugin.js"></script>
+</body>
+
 </html>

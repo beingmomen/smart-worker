@@ -142,20 +142,23 @@ let worker
 let allCastingId = new Set()
 let trendingData = new Set()
 let castingData = new Set()
+let castingDataInfo = new Set()
 let moviesCatagoriesData = new Set()
+let categoryMoviesData = new Set()
 
 worker = new Worker('/js/worker.js')
 
-worker.postMessage("trending");
-worker.postMessage("casting");
-worker.postMessage("moviesCatagories");
+worker.postMessage({ title: "trending", data: null });
+worker.postMessage({ title: "casting", data: null });
+worker.postMessage({ title: "moviesCatagories", data: null });
+
 
 
 
 worker.addEventListener('message', e => {
 
     let i = 0
-    let res = e.data.data.results
+    let res = e.data
     let title = e.data.title
 
     // console.log("return message data : ", res);
@@ -164,28 +167,41 @@ worker.addEventListener('message', e => {
 
     switch (title) {
         case 'trending':
-            while (i < res.length) {
-                trendingData.add(res[i])
+            let dataTrending = res.data.results
+            while (i < dataTrending.length) {
+                trendingData.add(dataTrending[i])
                 i++
             }
             break;
 
         case 'casting':
-            while (i < res.length) {
-                castingData.add(res[i])
+            let dataCasting = res.data.results
+            while (i < dataCasting.length) {
+                castingData.add(dataCasting[i])
                 i++
             }
-
             break;
-        case 'moviesCatagories':
 
-            console.log("return message data : ", res);
-            console.log("return message title : ", title);
-            while (i < res?.length) {
-                moviesCatagoriesData.add(res[i])
+        case 'castingInfo':
+            let dataCastingInfo = res.data
+            while (i < dataCastingInfo.length) {
+                castingDataInfo.add(dataCastingInfo[i])
                 i++
             }
-            console.log("moviesCatagoriesData : ", moviesCatagoriesData);
+            break;
+
+        case 'moviesCatagories':
+            let dataMoviesCatagories = res.data.genres
+            while (i < dataMoviesCatagories.length) {
+                moviesCatagoriesData.add(dataMoviesCatagories[i])
+                i++
+            }
+            break;
+        case 'categoryMovies':
+            categoryMoviesData = res.data
+
+            // console.log("categoryMoviesData : ", categoryMoviesData);
+
             break;
         // case 'casting':
 
@@ -197,11 +213,8 @@ worker.addEventListener('message', e => {
 })
 
 
-
-
 // Get all trending 
 setTimeout(() => {
-    console.log("object");
     trendingData.forEach(el => {
         document.querySelector(".trending").insertAdjacentHTML('beforeend',
             addTrendingImages(el.backdrop_path)
@@ -210,72 +223,74 @@ setTimeout(() => {
 
     castingData.forEach(el => {
         allCastingId.add(el.id)
-        document.querySelector(".casting").insertAdjacentHTML('beforeend',
-            insertCastingCard(el.profile_path, el.name, el.biography, el.imdb_id))
     })
+    worker.postMessage({ title: "castingInfo", data: allCastingId })
 
-    allCastingId = JSON.parse(JSON.stringify(allCastingId));
+    setTimeout(() => {
+        castingDataInfo.forEach(el => {
+            document.querySelector(".casting").insertAdjacentHTML('beforeend',
+                insertCastingCard(el.profile_path, el.name, el.biography, el.imdb_id))
+        })
+    }, 2000);
 
-    worker.postMessage("castingInfo", allCastingId)
+    // Get all movies catagories
+    moviesCatagoriesData.forEach(el => {
+        loadCategoryMovies(el)
+    });
+    worker.postMessage({ title: "categoryMovies", data: moviesCatagoriesData });
+
 }, 1000);
 
 
-// Get all cast
-// @ts-ignore
 
-
-// axios.get(`${originUrl}person/popular${apiKey}&language=en-US&page=1`)
-//     .then(res => {
-//         let data = res.data.results
-//         data.forEach(el => {
-//             // @ts-ignore
-//             axios.get(`${originUrl}person/${el.id}${apiKey}&language=en-US`)
-//                 .then(res => {
-//                     let data = res.data
-//                     document.querySelector(".casting").insertAdjacentHTML('beforeend',
-//                         insertCastingCard(el.profile_path, el.name, data.biography, data.imdb_id))
-//                 })
-//         })
-//     })
-
-
-// Get all movies catagories
-// @ts-ignore
-axios.get(`${originUrl}genre/movie/list${apiKey}&language=en-US`)
-    .then(res => {
-        let data = res.data.genres
-
-        data.forEach(el => {
-            let name = el.name
-            // @ts-ignore
-            loadCategoryMovies(el)
-
-
-        });
-    })
 
 
 // Load Catagories movies
 const loadCategoryMovies = (el) => {
-    axios.get(`${originUrl}genre/${el.id}/movies${apiKey}&language=en-US&include_adult=false&sort_by=created_at.asc`)
-        .then(res => {
-            let data = res.data.results
-            document.querySelector(".movies-list").insertAdjacentHTML('beforeend',
-                insertMoviesList(el.name, el.id)
-            )
-            typeList = document.querySelector(`.type-list${el.id}`)
-            data.forEach(item => {
 
-                typeList.insertAdjacentHTML('beforeend', insertPosterForMoviesList(item.poster_path, item.id))
+    // console.log("run el : ", el);
+    document.querySelector(".movies-list").insertAdjacentHTML('beforeend',
+        insertMoviesList(el.name, el.id))
 
-            });
-            setTimeout(() => {
-                document.querySelectorAll(".not-load").forEach(el => {
-                    el.classList.remove("not-load")
-                })
-                document.querySelector(".scaling-squares-spinner").classList.add("not-load")
-            }, 6000);
+    typeList = document.querySelector(`.type-list${el.id}`)
+
+    setTimeout(() => {
+        categoryMoviesData.forEach(movie => {
+
+            // console.log("movie : ", movie);
+            typeList.insertAdjacentHTML('beforeend', insertPosterForMoviesList(movie.poster_path, movie.id))
+
         })
+    }, 1000);
+
+
+    setTimeout(() => {
+        document.querySelectorAll(".not-load").forEach(el => {
+            el.classList.remove("not-load")
+        })
+        document.querySelector(".scaling-squares-spinner").classList.add("not-load")
+    }, 6000);
+
+
+    // axios.get(`${originUrl}genre/${el.id}/movies${apiKey}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    //     .then(res => {
+    //         let data = res.data.results
+    //         document.querySelector(".movies-list").insertAdjacentHTML('beforeend',
+    //             insertMoviesList(el.name, el.id)
+    //         )
+    //         typeList = document.querySelector(`.type-list${el.id}`)
+    //         data.forEach(item => {
+
+    //             typeList.insertAdjacentHTML('beforeend', insertPosterForMoviesList(item.poster_path, item.id))
+
+    //         });
+    //         setTimeout(() => {
+    //             document.querySelectorAll(".not-load").forEach(el => {
+    //                 el.classList.remove("not-load")
+    //             })
+    //             document.querySelector(".scaling-squares-spinner").classList.add("not-load")
+    //         }, 6000);
+    //     })
 }
 
 // Store movie id in localStorage
