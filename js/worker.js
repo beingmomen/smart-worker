@@ -58,28 +58,32 @@ self.addEventListener('message', e => {
 
         case 'categoryMovies':
             let categoryMovies = new Set()
+            let arr = []
             data.forEach(el => {
                 fetch(`${originUrl}genre/${el.id}/movies${apiKey}&language=en-US&include_adult=false&sort_by=created_at.asc`)
                     .then(res => res.json())
                     .then(res => {
                         res.category_name = el.name
-                        // console.log("res : ", res.results);
+                        console.log("salah : ", res);
                         categoryMovies.add(res.results)
+                        arr.push({ name: res.category_name, id: res.id, data: res.results })
 
                         // console.log("categoryMovies : ", categoryMovies);
                     })
                     .then(() => {
                         if (categoryMovies.size == 19) {
                             self.postMessage({ title: "categoryMovies", data: categoryMovies })
+                            // console.log("arr : ", arr);
+                            // console.log("categoryMovies : ", categoryMovies);
                         }
                     })
             })
 
 
             setTimeout(() => {
-                console.log("object : ", categoryMovies);
+                // console.log("object : ", categoryMovies);
                 categoryMovies.forEach(el => {
-                    console.log("el el : ", el);
+                    // console.log("el el : ", el);
                 })
             }, 1000);
 

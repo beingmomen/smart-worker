@@ -258,7 +258,10 @@ const loadCategoryMovies = (el) => {
         categoryMoviesData.forEach(movie => {
 
             // console.log("movie : ", movie);
-            typeList.insertAdjacentHTML('beforeend', insertPosterForMoviesList(movie.poster_path, movie.id))
+            movie.forEach(x => {
+                // console.log("x : ", x);
+                // typeList.insertAdjacentHTML('beforeend', insertPosterForMoviesList(x.poster_path, x.id))
+            })
 
         })
     }, 1000);
