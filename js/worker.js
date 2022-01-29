@@ -16,22 +16,23 @@ self.addEventListener('message', e => {
         case 'trending':
             let trendingApi = `${originUrl}trending/all/day${apiKey}`
             let trendingData = new Set()
+            let img = new Set()
             fetch(trendingApi)
                 .then(res => res.json())
                 .then(res => {
                     let data = res.results
-                    // console.log("trending res : ", data);
                     while (i < data.length) {
                         trendingData.add(data[i])
+                        img.add(data[i].backdrop_path)
                         i++
                     }
-                    // console.log("ok ok");
-                    self.postMessage({ title: 'trending', data: trendingData })
+                    self.postMessage({ title: 'trending', data: { trendingData: trendingData, img: img } })
                 })
             break;
 
         case 'casting':
             let castingApi = `${originUrl}person/popular${apiKey}&language=en-US&page=1`
+            let castingId = new Set()
             let castingData = new Set()
             fetch(castingApi)
                 .then(res => res.json())
@@ -39,34 +40,26 @@ self.addEventListener('message', e => {
                     let data = res.results
 
                     while (i < data.length) {
-                        castingData.add(data[i])
+                        castingId.add(data[i].id)
                         i++
                     }
-                    self.postMessage({ title: 'casting', data: castingData })
                 })
-            break;
+                .then(() => {
+                    castingId.forEach(el => {
+                        fetch(`${originUrl}person/${el}${apiKey}&language=en-US`)
+                            .then(res => res.json())
+                            .then(res => {
+                                castingData.add(res)
+                            })
+                            .then(() => {
+                                if (castingData.size == 20) {
+                                    self.postMessage({ title: 'casting', data: castingData })
 
-        case 'castingInfo':
-            let castingInfo = []
-            data.forEach(el => {
-                fetch(`${originUrl}person/${el}${apiKey}&language=en-US`)
-                    .then(res => res.json())
-                    .then(res => {
-                        console.log("castingInfo res : ", res);
-                        // castingInfo.push(res)
-                        let dataCastingInfo = res.data
-                        while (i < dataCastingInfo.length) {
-                            castingDataInfo.add(dataCastingInfo[i])
-                            i++
-                        }
+                                }
+                            })
                     })
-                    .then(() => {
-                        if (castingInfo.length == 20) {
-                            self.postMessage({ title: "castingInfo", data: castingInfo })
-                        }
 
-                    })
-            });
+                })
             break;
 
         case 'moviesCatagories':
@@ -85,8 +78,6 @@ self.addEventListener('message', e => {
                                     self.postMessage({ title: "moviesCatagories", data: allCategoriesData })
                                 }
                             })
-
-
                     })
                 })
             break;

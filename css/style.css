@@ -16,8 +16,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  /*background-image: url(../img/spidy1.jpg);
-    */
+  background-image: url(../img/full.jpg);
   background-attachment: fixed !important;
   background-size: cover !important;
   filter: blur(10px);
@@ -382,7 +381,7 @@ h3.card-head {
 }
 
 .not-load {
-  display: none;
+  display: none !important;
 }
 
 @keyframes scaling-squares-animation {

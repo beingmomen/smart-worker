@@ -100,7 +100,6 @@ const backgroundTrailer = (key) => {
 
 // Add Related Movies
 const relatedMoviesFun = (obj) => {
-    console.log("object : ", obj);
     return `<li>
                 <a class="single-movie" href="single.html">
                     <div class="uk-panel h-100">
@@ -111,7 +110,8 @@ const relatedMoviesFun = (obj) => {
                     ${obj.title}
                     </h3>
                 </a>
-            </li>`}
+            </li>`
+}
 
 
 // Insert related movies
@@ -125,18 +125,10 @@ const insertRelatedMovies = (fun) => {
 
 
 
-
-// Set Background for home page
-setTimeout(() => {
-    bodyOverlay.style.background = `url('${imageUrl}${images[GenerateRandomNumber(19)]}')`;
-
-}, 2000);
-
 // Random Background for home page
 setInterval(() => {
     bodyOverlay.style.background = `url('${imageUrl}${images[GenerateRandomNumber(images.length)]}')`;
-}, 10000);
-
+}, 15000);
 
 
 let worker
@@ -153,7 +145,6 @@ worker = new Worker('/js/worker.js')
 worker.postMessage({ title: "trending", data: null });
 worker.postMessage({ title: "casting", data: null });
 worker.postMessage({ title: "moviesCatagories", data: null });
-// worker.postMessage({ title: "movieInfo", data: null });
 
 
 
@@ -161,39 +152,17 @@ worker.postMessage({ title: "moviesCatagories", data: null });
 
 worker.addEventListener('message', e => {
 
-    let i = 0
     let res = e.data
     let title = e.data.title
 
-    // console.log("return message data : ", res);
-    // console.log("return message title : ", title);
-
-
     switch (title) {
         case 'trending':
-            trendingData = res.data
-            // console.log("incoming trending : ", trendingData);
-            // while (i < dataTrending.length) {
-            //     trendingData.add(dataTrending[i])
-            //     i++
-            // }
+            trendingData = res.data.trendingData
+            images = [...res.data.img]
             break;
 
         case 'casting':
             castingData = res.data
-            // let dataCasting = res.data.results
-            // while (i < dataCasting.length) {
-            //     castingData.add(dataCasting[i])
-            //     i++
-            // }
-            break;
-
-        case 'castingInfo':
-            let dataCastingInfo = res.data
-            while (i < dataCastingInfo.length) {
-                castingDataInfo.add(dataCastingInfo[i])
-                i++
-            }
             break;
 
         case 'moviesCatagories':
@@ -201,11 +170,7 @@ worker.addEventListener('message', e => {
             break;
         case 'movieInfo':
             singleData.push(res.data)
-            // console.log("single movie data from out side : ", singleData);
             break;
-        // case 'casting':
-
-        // break;
         default:
             break;
     }
@@ -221,16 +186,9 @@ setTimeout(() => {
     });
 
     castingData.forEach(el => {
-        allCastingId.add(el.id)
+        document.querySelector(".casting").insertAdjacentHTML('beforeend',
+            insertCastingCard(el.profile_path, el.name, el.biography, el.imdb_id))
     })
-    worker.postMessage({ title: "castingInfo", data: allCastingId })
-
-    setTimeout(() => {
-        castingDataInfo.forEach(el => {
-            document.querySelector(".casting").insertAdjacentHTML('beforeend',
-                insertCastingCard(el.profile_path, el.name, el.biography, el.imdb_id))
-        })
-    }, 2000);
 
     // Get all movies catagories
     moviesCatagoriesData.forEach(el => {
@@ -258,18 +216,18 @@ const loadCategoryMovies = (name, id, data) => {
         document.querySelectorAll(".not-load").forEach(el => {
             el.classList.remove("not-load")
         })
-        document.querySelector(".scaling-squares-spinner").classList.add("not-load")
-    }, 6000);
+        document.querySelector(".scaling-squares-spinner").parentElement.classList.add("not-load")
+    }, 2000);
+
 }
 
 // Store movie id in localStorage
 setTimeout(() => {
     let movieId = document.querySelectorAll(".single-movie")
+    console.log("movieId : ", movieId);
     movieId.forEach(item => {
         item.addEventListener("click", e => {
             localStorage.setItem("movieID", e.target.id)
-
-
         })
     })
 }, 1000);
@@ -290,8 +248,8 @@ player.on('ready', (event) => {
 // Get movie id from localStorage
 let movieIdFromStorage = localStorage.getItem('movieID')
 worker.postMessage({ title: "movieInfo", data: movieIdFromStorage });
-let rating
 
+let rating
 setTimeout(() => {
     let allData = singleData[0].data
     let relatedMovies = singleData[0].related
@@ -312,67 +270,6 @@ setTimeout(() => {
         insertRelatedMovies(relatedMoviesFun(el))
     })
 }, 1000);
-
-
-// Get all movie info
-// axios.get(`${originUrl}movie/${movieIdFromStorage}${apiKey}&language=en-US`)
-//     .then(res => {
-//         let movieData = res.data
-//         rating = +(movieData.vote_average / 2).toFixed(1)
-
-//         // Get all casting for the movie
-//         axios.get(`${originUrl}movie/${movieData.id}/credits${apiKey}&language=en-US`)
-//             .then(res => {
-//                 let castData = res.data.cast
-//                 document.querySelector(".single-info-top").insertAdjacentHTML('beforeend', movieCasting(movieData.original_title, movieData.release_date, castData[0].name, castData[1].name, movieData.overview))
-
-//                 // Set movie’s rating
-//                 let rateObject = {
-//                     rating: rating,
-//                     starWidth: "20px",
-//                     halfStar: true,
-//                     readOnly: true
-//                 }
-
-//                 $(function () {
-//                     $("#rateYo").rateYo(rateObject);
-//                 });
-//             })
-
-//         document.querySelector(".imdb-link").setAttribute("href", `https://www.imdb.com/title/${movieData.imdb_id}`)
-//         axios.get(`${originUrl}movie/${movieData.id}/videos${apiKey}&language=en-US`)
-//             .then(res => {
-//                 // console.log(res);
-//                 let trailer = res.data.results[0]
-//                 document.querySelector(".plyr__video-embed").insertAdjacentHTML("beforeend", backgroundTrailer(trailer.key))
-//                 document.querySelector(".trailer-id").setAttribute("src", `https://www.youtube-nocookie.com/embed/${trailer.key}`)
-//             })
-
-
-//         // Get related Movies
-//         axios.get(`${originUrl}movie/${movieData.id}/similar${apiKey}&language=en-US&page=1`)
-//             // axios.get(`${originUrl}movie/${movieData.id}/recommendations${apiKey}&language=en-US&page=1`)
-//             .then(res => {
-//                 let relatedMovies = res.data.results
-
-
-//                 relatedMovies.forEach(item => {
-//                     let relatedObject = {
-//                         id: item.id,
-//                         poster: null,
-//                         title: item.title,
-//                     }
-//                     relatedObject.poster = item.poster_path || null
-//                     insertRelatedMovies(relatedMoviesFun(relatedObject))
-//                 })
-//             })
-//     })
-
-
-
-
-
-
 
 
 
